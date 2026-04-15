@@ -18,7 +18,7 @@
 
 
   app.use(cors({
-      origin: process.env.FRONTEND_URL,
+      origin: "https://i-dfy-x5bu.vercel.app",
       credentials: true,
   }));
   app.use("/api/auth", adminRoutes);
