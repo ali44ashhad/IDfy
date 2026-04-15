@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CheckoutForm from "./CheckOutForm";
+import CheckoutForm from "./CheckoutForm";
 
 const OrderManagement = () => {
   const [orderData, setOrderData] = useState({

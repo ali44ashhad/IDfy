@@ -17,7 +17,7 @@ import HowToPay from './pages/howToPay/HowToPay'
 import ShippingSection from './pages/shipping/ShippingSection'
 import Contact from './pages/contact/Contact'
 import AdminLoginForm from './components/AdminLoginForm'
-import CheckoutForm from './pages/orders/CheckOutForm'
+import CheckoutForm from './pages/orders/CheckoutForm'
 import AdminDashboard from './components/AdminDashboard'
 // A wrapper for the "Open from Top" animation
 const PageWrapper = ({ children }) => (
