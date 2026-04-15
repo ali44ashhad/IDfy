@@ -19,7 +19,7 @@
 
   app.use(cors({
       origin: "https://i-dfy-x5bu.vercel.app",
-      credentials: true,
+       credentials: true,
   }));
   app.get("/", (req, res) => {
     res.send("API is running 🚀");
