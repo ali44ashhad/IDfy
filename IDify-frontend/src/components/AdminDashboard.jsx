@@ -163,146 +163,131 @@ const AdminDashboard = () => {
             onClick={() => setSelectedUser(null)}
           />
 
-          <div className="relative w-full max-w-[95vw] sm:max-w-4xl bg-[#161a21] border border-gray-800 rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto overscroll-contain">
-            <div className="p-4 sm:p-5 border-b border-gray-800 flex items-center justify-between">
-              <div className="min-w-0">
-                <p className="text-xs text-gray-500 uppercase font-bold tracking-wider">User details</p>
-                <h2 className="text-lg sm:text-xl font-bold text-white truncate">
-                  {selectedUser.firstName} {selectedUser.middleName} {selectedUser.lastName}
-                </h2>
-                <p className="text-xs text-gray-500 truncate">{selectedUser.email}</p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setSelectedUser(null)}
-                className="p-2 rounded-lg hover:bg-gray-800 transition-colors"
-                aria-label="Close"
-              >
-                <X size={20} />
-              </button>
+<div className="fixed inset-0 z-[9999] flex items-start justify-center p-4 overflow-y-auto bg-black/70 backdrop-blur-sm">
+  {/* Modal Container - Added mt-20 to stay below Navbar and reduced max-width to 2xl */}
+  <div className="relative w-full max-w-2xl mt-30 mb-10 bg-[#161a21] border border-gray-800 rounded-2xl shadow-2xl flex flex-col">
+    
+    {/* Header - Sticky so it's always visible */}
+    <div className="sticky top-0 z-10 p-4 sm:p-5 border-b border-gray-800 flex items-center justify-between bg-[#161a21] rounded-t-2xl">
+      <div className="min-w-0">
+        <p className="text-xs text-gray-500 uppercase font-bold tracking-wider">User details</p>
+        <h2 className="text-lg font-bold text-white truncate">
+          {selectedUser.firstName} {selectedUser.middleName} {selectedUser.lastName}
+        </h2>
+        <p className="text-xs text-gray-500 truncate">{selectedUser.email}</p>
+      </div>
+      <button
+        type="button"
+        onClick={() => setSelectedUser(null)}
+        className="p-2 rounded-lg hover:bg-gray-800 transition-colors text-gray-400"
+        aria-label="Close"
+      >
+        <X size={20} />
+      </button>
+    </div>
+
+    {/* Body Content */}
+    <div className="p-4 sm:p-6 space-y-6">
+      <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+        {selectedUser.photo ? (
+          <img
+            src={selectedUser.photo}
+            alt="profile"
+            className="w-20 h-20 rounded-full object-cover ring-2 ring-blue-500/20"
+          />
+        ) : (
+          <div className="w-20 h-20 rounded-full bg-gray-700 flex items-center justify-center">
+            <UserCircle size={40} className="text-gray-500" />
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+          <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-3">
+            <p className="text-gray-400 text-[10px] font-bold uppercase mb-1">Status</p>
+            <p className="text-sm text-gray-200 font-semibold">{getUserStatus(selectedUser)}</p>
+          </div>
+          <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-3">
+            <p className="text-gray-400 text-[10px] font-bold uppercase mb-1">Telegram ID</p>
+            <p className="text-sm text-gray-200 break-words">{selectedUser.tellegramId || 'N/A'}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Info Grid - Reduced to 2 columns for a slimmer look */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-4">
+          <p className="text-gray-400 text-[10px] font-bold uppercase mb-2">Identity</p>
+          <div className="space-y-1 text-sm text-gray-200">
+            <p>{`${selectedUser.firstName || ''} ${selectedUser.middleName || ''} ${selectedUser.lastName || ''}`.trim() || 'N/A'}</p>
+            <p className="text-gray-400 text-xs">{selectedUser.email || 'N/A'}</p>
+          </div>
+        </div>
+
+        <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-4">
+          <p className="text-gray-400 text-[10px] font-bold uppercase mb-2">Personal</p>
+          <div className="grid grid-cols-2 gap-2 text-sm text-gray-200">
+            <div>
+              <span className="text-[9px] text-gray-500 block uppercase">DOB</span>
+              {formatDate(selectedUser.dateOfBirth)}
             </div>
-
-            <div className="p-4 sm:p-6">
-              <div className="flex items-start gap-4 mb-6">
-                {selectedUser.photo ? (
-                  <img
-                    src={selectedUser.photo}
-                    alt="profile"
-                    className="w-10 h-16 rounded-full object-cover ring-2 ring-blue-500/20"
-                  />
-                ) : (
-                  <div className="w-16 h-16 rounded-full bg-gray-700 flex items-center justify-center">
-                    <UserCircle size={34} className="text-gray-500" />
-                  </div>
-                )}
-
-                <div className="min-w-0 flex-1">
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-3">
-                      <p className="text-gray-400 text-[11px] font-bold uppercase tracking-tight mb-1">Status</p>
-                      <p className="text-sm text-gray-200 font-semibold">{getUserStatus(selectedUser)}</p>
-                    </div>
-                    <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-3">
-                      <p className="text-gray-400 text-[11px] font-bold uppercase tracking-tight mb-1">Pronoun</p>
-                      <p className="text-sm text-gray-200">{selectedUser.pronoun || 'N/A'}</p>
-                    </div>
-                    <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-3">
-                      <p className="text-gray-400 text-[11px] font-bold uppercase tracking-tight mb-1">Telegram ID</p>
-                      <p className="text-sm text-gray-200 break-words">{selectedUser.tellegramId || 'N/A'}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-4">
-                  <p className="text-gray-400 text-[11px] font-bold uppercase tracking-tight mb-2">Identity</p>
-                  <div className="space-y-1 text-sm">
-                    <p className="text-gray-200 break-words">
-                      {`${selectedUser.firstName || ''} ${selectedUser.middleName || ''} ${selectedUser.lastName || ''}`.replace(/\s+/g, ' ').trim() || 'N/A'}
-                    </p>
-                    <p className="text-gray-400 break-words">{selectedUser.email || 'N/A'}</p>
-                  </div>
-                </div>
-
-                <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-4">
-                  <p className="text-gray-400 text-[11px] font-bold uppercase tracking-tight mb-2">Address</p>
-                  <div className="space-y-1 text-sm">
-                    <p className="text-gray-200 break-words">{selectedUser.addressOne || 'N/A'}</p>
-                    <p className="text-gray-200 break-words">{selectedUser.addressTwo || 'N/A'}</p>
-                    <p className="text-gray-300 break-words">{selectedUser.city || 'N/A'} {selectedUser.postalCode || ''}</p>
-                  </div>
-                </div>
-
-                <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-4">
-                  <p className="text-gray-400 text-[11px] font-bold uppercase tracking-tight mb-2">Personal</p>
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div>
-                      <p className="text-gray-500 text-[10px] uppercase font-bold">Birth date</p>
-                      <p className="text-gray-200">{formatDate(selectedUser.dateOfBirth)}</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500 text-[10px] uppercase font-bold">Gender</p>
-                      <p className="text-gray-200">{selectedUser.gender || 'N/A'}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-4">
-                  <p className="text-gray-400 text-[11px] font-bold uppercase tracking-tight mb-2">License</p>
-                  <p className="text-gray-200 break-words text-sm">{selectedUser.license || 'N/A'}</p>
-                </div>
-
-                <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-4">
-                  <p className="text-gray-400 text-[11px] font-bold uppercase tracking-tight mb-2">Payment reference</p>
-                  <p className="text-gray-200 break-words text-sm">{selectedUser.paymentRef || 'N/A'}</p>
-                </div>
-
-                <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-4">
-                  <p className="text-gray-400 text-[11px] font-bold uppercase tracking-tight mb-2">Timestamps</p>
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div>
-                      <p className="text-gray-500 text-[10px] uppercase font-bold">Created</p>
-                      <p className="text-gray-200">{formatDate(selectedUser.createdAt)}</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500 text-[10px] uppercase font-bold">Updated</p>
-                      <p className="text-gray-200">{formatDate(selectedUser.updatedAt)}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-4">
-                  <p className="text-gray-400 text-[11px] font-bold uppercase tracking-tight mb-2">Photo</p>
-                  {selectedUser.photo ? (
-                    <img src={selectedUser.photo} alt="photo" className="w-auto h-25 object-contain-contain" />
-                  ) : (
-                    <span className="text-sm text-gray-500 italic">None provided</span>
-                  )}
-                </div>
-                <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-4">
-                  <p className="text-gray-400 text-[11px] font-bold uppercase tracking-tight mb-2">Signature</p>
-                  {selectedUser.signature ? (
-                    <img src={selectedUser.signature} alt="sig" className="w-full max-h-64 object-contain rounded bg-white" />
-                  ) : (
-                    <span className="text-sm text-gray-500 italic">None provided</span>
-                  )}
-                </div>
-              </div>
-
-              <div className="mt-6 flex justify-end">
-                <button
-                  type="button"
-                  onClick={() => setSelectedUser(null)}
-                  className="px-4 py-2 rounded-lg bg-blue-600/20 border border-blue-500/40 text-blue-200 hover:bg-blue-600/30 transition-colors text-sm font-semibold"
-                >
-                  Close
-                </button>
-              </div>
+            <div>
+              <span className="text-[9px] text-gray-500 block uppercase">Gender</span>
+              {selectedUser.gender || 'N/A'}
             </div>
           </div>
+        </div>
+
+        <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-4 sm:col-span-2">
+          <p className="text-gray-400 text-[10px] font-bold uppercase mb-2">Address</p>
+          <p className="text-sm text-gray-200">{selectedUser.addressOne || 'N/A'}</p>
+          {selectedUser.addressTwo && <p className="text-sm text-gray-200">{selectedUser.addressTwo}</p>}
+          <p className="text-sm text-gray-400 mt-1">{selectedUser.city || ''} {selectedUser.postalCode || ''}</p>
+        </div>
+
+        <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-4">
+          <p className="text-gray-400 text-[10px] font-bold uppercase mb-2">License</p>
+          <p className="text-sm text-gray-200 truncate">{selectedUser.license || 'N/A'}</p>
+        </div>
+
+        <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-4">
+          <p className="text-gray-400 text-[10px] font-bold uppercase mb-2">Payment Ref</p>
+          <p className="text-sm text-gray-200 truncate">{selectedUser.paymentRef || 'N/A'}</p>
+        </div>
+      </div>
+
+      {/* Visual Data */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-3">
+          <p className="text-gray-400 text-[10px] font-bold uppercase mb-2">Photo</p>
+          {selectedUser.photo ? (
+            <img src={selectedUser.photo} alt="user" className="w-full h-32 object-contain rounded-lg" />
+          ) : (
+            <p className="text-xs text-gray-600 italic">No Photo</p>
+          )}
+        </div>
+        <div className="bg-[#0d0f14] border border-gray-800 rounded-xl p-3">
+          <p className="text-gray-400 text-[10px] font-bold uppercase mb-2">Signature</p>
+          {selectedUser.signature ? (
+            <img src={selectedUser.signature} alt="sig" className="w-full h-32 object-contain rounded bg-white p-1" />
+          ) : (
+            <p className="text-xs text-gray-600 italic">No Signature</p>
+          )}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="flex justify-end pt-4">
+        <button
+          type="button"
+          onClick={() => setSelectedUser(null)}
+          className="w-full sm:w-auto px-8 py-2.5 rounded-xl bg-blue-600/10 border border-blue-500/30 text-blue-400 hover:bg-blue-600/20 transition-all text-sm font-bold"
+        >
+          Close Profile
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
       )}
       
