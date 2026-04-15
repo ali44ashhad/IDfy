@@ -26,7 +26,8 @@ const AdminDashboard = () => {
     const fetchUsers = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${apiBase}/api/auth/get-all-users`, {
+        const response = await axios.get(`${apiBase}/api/auth/get-all-users`, 
+          {
           withCredentials: true,
         });
         
