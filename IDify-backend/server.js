@@ -21,6 +21,9 @@
       origin: "https://i-dfy-x5bu.vercel.app",
       credentials: true,
   }));
+  app.get("/", (req, res) => {
+    res.send("API is running 🚀");
+  });
   app.use("/api/auth", adminRoutes);
   app.use("/api/user", userRoutes);
   

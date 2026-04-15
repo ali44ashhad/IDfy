@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+// import { Menu, X } from 'lucide-react';
+
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,13 +42,13 @@ const Navbar = () => {
             <li><Link to="/pay" className="hover:text-blue-500 transition">How To Pay</Link></li>
           </ul>
         </div>
-
+{/* 
         <div className="flex items-center gap-6">
           <Link to="/login" className="hidden lg:block text-sm font-bold hover:text-white transition">Login</Link>
           <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden text-white p-2">
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
-        </div>
+        </div> */}
       </nav>
 
       {/* Mobile Menu - "Push Down" style */}
