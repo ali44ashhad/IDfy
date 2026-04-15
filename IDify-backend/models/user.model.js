@@ -52,7 +52,7 @@ const userScheme = new mongoose.Schema({
       },
       photo: {
         type: String,
-        required: true,
+        required: false,
       },
       signature: {
         type: String,

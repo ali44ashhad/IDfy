@@ -67,20 +67,24 @@ export const createUser = async (req, res) => {
     }
   };
 
-  
-export const getUser = async (req, res) => {
-    const user = await User.findById(req.params.id);
-    res.status(200).json(user, { message: "User fetched successfully" });
-};
-
-export const getAllUsers = async (req, res) => {
-    const users = await User.find();
-    res.status(200).json(users, { message: "All Users fetched successfully" });
-};
-
 export const updateUser = async (req, res) => {
-    const user = await User.findOneAndReplace(req.params.id, req.body, { new: true });
-    res.status(200).json(user, { message: "User updated successfully" });
+  try {
+    const { id } = req.params;
+    const updates = req.body || {};
+
+    const user = await User.findByIdAndUpdate(id, updates, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json({ message: "User updated successfully", user });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
 
  

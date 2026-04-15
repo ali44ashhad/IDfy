@@ -1,9 +1,10 @@
 import dotenv from "dotenv";
+dotenv.config();
+
 import bcrypt from "bcryptjs";
 import connectDB from "../config/db.js";
 import Admin from "../models/admin.model.js";
 
-dotenv.config();
 
 const seedAdmin = async () => {
   try {
@@ -13,7 +14,7 @@ const seedAdmin = async () => {
     console.log("DB Connected...");
 
     const existingAdmin = await Admin.findOne({
-      email: "admin@gmail.com"
+      email: process.env.ADMIN_EMAIL
     });
 
     if (existingAdmin) {
@@ -21,11 +22,11 @@ const seedAdmin = async () => {
       process.exit();
     }
 
-    const hashedPassword = await bcrypt.hash("123456", 10);
+    const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, 10);
 
     await Admin.create({
       name: "Admin",
-      email: "admin@gmail.com",
+      email: process.env.ADMIN_EMAIL,
       password: hashedPassword,
       role: "admin"
     });
@@ -40,4 +41,4 @@ const seedAdmin = async () => {
   }
 };
 
-seedAdmin(); // 🔥 VERY IMPORTANT
+seedAdmin(); // 🔥 VERY IMPORTANT 
