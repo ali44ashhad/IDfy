@@ -157,13 +157,13 @@ const AdminDashboard = () => {
     <div className="pt-30 flex h-screen bg-[#0d0f14] text-gray-200 overflow-hidden">
       {/* Details Modal */}
       {selectedUser && (
-        <div className="fixed t-10 inset-0 z-[60] flex items-end sm:items-center justify-center">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6">
           <div
             className="absolute inset-0 bg-black/70 backdrop-blur-sm"
             onClick={() => setSelectedUser(null)}
           />
 
-          <div className="relative w-[95vw] sm:max-w-5xl bg-[#161a21] border border-gray-800 rounded-t-2xl sm:rounded-2xl shadow-2xl">
+          <div className="relative w-full max-w-[95vw] sm:max-w-4xl bg-[#161a21] border border-gray-800 rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto overscroll-contain">
             <div className="p-4 sm:p-5 border-b border-gray-800 flex items-center justify-between">
               <div className="min-w-0">
                 <p className="text-xs text-gray-500 uppercase font-bold tracking-wider">User details</p>
