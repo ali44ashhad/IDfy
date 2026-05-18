@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
     { expiresIn: "7d" }
   );
 
-  // 🍪 store in cookie
+  // 🍪 store in cookie/
   res.cookie("token", token, {
     httpOnly: true, // 🔐 cannot access via JS
     secure: "true", // https only in prod

@@ -8,7 +8,6 @@
   import cors from 'cors';
   import userRoutes from './routes/userRoutes.js';
 
-
   const app = express()
   const port = 9000
 
@@ -19,7 +18,7 @@
 
   app.use(cors({
       origin: "https://i-dfy-x5bu.vercel.app",
-       credentials: true,
+       credentials: true, 
   }));
   app.get("/", (req, res) => {
     res.send("API is running 🚀");
@@ -38,6 +37,6 @@
           console.log('Error starting the server', error);
           process.exit(1);
       }
-    };
-    
+    };  
+
     startServer();

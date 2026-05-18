@@ -325,10 +325,10 @@ const CheckoutForm = ({
                 name="license"
                 value={formData.license}
                 onChange={handleChange}
-                className="w-full bg-[#252932] border border-gray-700 rounded-md p-2.5 outline-none focus:border-blue-500"
+                className="text-gray-500 w-full bg-[#252932] border border-gray-700 rounded-md p-2.5 outline-none focus:border-blue-500"
               >
-                <option value="">--------</option>
-                <option value="full">Full</option>
+                <option value="" className="text-gray-500">select licence type...</option>
+                <option value="drivers licence">Drivers Licence</option>
                 <option value="provisional">Provisional</option>
               </select>
             </div>
