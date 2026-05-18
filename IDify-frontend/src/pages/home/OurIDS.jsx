@@ -1,17 +1,15 @@
 import React from 'react';
-import ukFrontImg from '../../assets/homePageAssets/ids-1.jpg';
-import ukBackImg from '../../assets/homePageAssets/ids-2.jpg';
+import ukFrontImg from '../../assets/homePageAssets/provisional.mp4';
+import ukBackImg from '../../assets/homePageAssets/ukdrivinglicense.mp4';
 
 const OurIDs = () => {
   const idsData = [
     {
-      title: "UK Front",
-      desc: "Front of UK 2022 ID",
+      title: "Provisional Driving License",
       src: ukFrontImg,
     },
     {
-      title: "UK Back",
-      desc: "Back Of The UK 2022 Fake ID",
+      title: "UK Driving License",
       src: ukBackImg,
     },
   ];
@@ -33,29 +31,35 @@ const OurIDs = () => {
         </div>
 
         {/* IDs Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-          {idsData.map((id, index) => (
-            <div key={index} className="flex flex-col items-center group">
-              
-              {/* Significantly Reduced Image Block Size */}
-              <div className="w-full max-w-[320px] aspect-[1.58/1] overflow-hidden rounded-xl bg-black border border-white/10 shadow-xl transition-all duration-500 group-hover:scale-105 group-hover:border-blue-500/40 mb-6">
-                <img 
-                  src={id.src}
-                  alt={id.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
+        <div className="w-[92%] lg:w-[85%] mx-auto flex flex-col md:flex-row gap-12 lg:gap-16 items-center md:items-start">
+  {idsData.map((id, index) => (
+    <div
+      key={index}
+      className="flex flex-col items-center group w-full md:w-1/2"
+    >
+      
+      {/* Larger Responsive Video Block */}
+      <div className="w-full max-w-[520px] overflow-hidden rounded-2xl bg-black border border-white/10 shadow-2xl transition-all duration-500 group-hover:scale-[1.02] group-hover:border-blue-500/40 mb-6">
+        
+        <video
+          src={id.src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-auto object-contain"
+        />
+      </div>
 
-              {/* Text Details adjusted for smaller scale */}
-              <h3 className="text-white text-xl md:text-2xl font-bold mb-2 tracking-tight group-hover:text-blue-500 transition-colors">
-                {id.title}
-              </h3>
-              <p className="text-gray-500 text-sm italic font-light">
-                {id.desc}
-              </p>
-            </div>
-          ))}
-        </div>
+      {/* Text Details */}
+      <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-bold mb-3 tracking-tight text-center group-hover:text-blue-500 transition-colors">
+        {id.title}
+      </h3>
+
+     
+    </div>
+  ))}
+</div>
       </div>
     </section>
   );
