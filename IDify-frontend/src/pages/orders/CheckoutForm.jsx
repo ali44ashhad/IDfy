@@ -108,7 +108,6 @@ const CheckoutForm = ({
         }
       );
 
-      console.log("Success:", response.data);
       alert("Order submitted successfully");
       setShowPaymentModal(false);
     } catch (error) {
