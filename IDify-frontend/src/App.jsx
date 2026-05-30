@@ -19,6 +19,7 @@ import Contact from './pages/contact/Contact'
 import AdminLoginForm from './components/AdminLoginForm'
 import CheckoutForm from './pages/orders/CheckoutForm'
 import AdminDashboard from './components/AdminDashboard'
+import Payment from './pages/orders/Payment'
 // A wrapper for the "Open from Top" animation
 const PageWrapper = ({ children }) => (
   <motion.div
@@ -55,6 +56,7 @@ const App = () => {
 
           <Route path='/admin-login' element={<PageWrapper><AdminLoginForm /></PageWrapper>} />
           <Route path='/checkout' element={<PageWrapper><CheckoutForm /></PageWrapper>} />
+          <Route path='/payment' element={<PageWrapper><Payment /></PageWrapper>} />
 
           <Route
             path="/admin-dashboard"

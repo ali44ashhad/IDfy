@@ -148,6 +148,7 @@ const AdminDashboard = () => {
         } catch (err) {
           console.error("Logout failed:", err);
           // Even if API fails, you might want to force redirect the user
+          LogOut()
           navigate('/login');
         }
       };

@@ -15,7 +15,7 @@ const Footer = () => {
 
                     {/* Left: Copyright */}
                     <div className="order-2 md:order-1 font-medium">
-                        MaximumFids © {new Date().getFullYear()}. All rights reserved.
+                        IDify © {new Date().getFullYear()}. All rights reserved.
                     </div>
 
                     {/* Center: Contact Info */}

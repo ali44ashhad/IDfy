@@ -55,7 +55,6 @@ const OurIDs = () => {
       <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-bold mb-3 tracking-tight text-center group-hover:text-blue-500 transition-colors">
         {id.title}
       </h3>
-
      
     </div>
   ))}
