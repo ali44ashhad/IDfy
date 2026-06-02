@@ -1,6 +1,5 @@
 import React from 'react';
-import Footer from '../../components/Footer';
-
+ 
 const HowToPay = () => {
   return (
     <>
@@ -129,8 +128,7 @@ const HowToPay = () => {
       </div>
     </div>
 
-    <Footer/>
-    </>
+     </>
   );
 };
 
